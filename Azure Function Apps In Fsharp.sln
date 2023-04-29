@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Azure Function Apps In Fsharp - Default", "Azure Function Apps In Fsharp - Default\Azure Function Apps In Fsharp - Default.fsproj", "{21D49498-E539-44D2-AD87-E6411E478911}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Azure Function Apps In Fsharp - Isolated", "Azure Function Apps In Fsharp - Isolated\Azure Function Apps In Fsharp - Isolated.fsproj", "{21DC0AC7-0AE4-49DF-91F3-8D8F2FC017C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21D49498-E539-44D2-AD87-E6411E478911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21D49498-E539-44D2-AD87-E6411E478911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21D49498-E539-44D2-AD87-E6411E478911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21D49498-E539-44D2-AD87-E6411E478911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21DC0AC7-0AE4-49DF-91F3-8D8F2FC017C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21DC0AC7-0AE4-49DF-91F3-8D8F2FC017C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21DC0AC7-0AE4-49DF-91F3-8D8F2FC017C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21DC0AC7-0AE4-49DF-91F3-8D8F2FC017C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
