@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Azure_Function_Apps_In_Csharp___Isolated": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7015",
+      "launchBrowser": false
+    }
+  }
+}

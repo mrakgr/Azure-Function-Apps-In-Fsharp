@@ -1,50 +1,21 @@
-﻿namespace Azure_Function_Apps_In_Fsharp
+﻿module Azure_Function_Apps_In_Fsharp___Isolated.Hello
 
-open System
-open System.IO
-open Microsoft.AspNetCore.Mvc
-open Microsoft.Azure.WebJobs
-open Microsoft.Azure.WebJobs.Extensions.Http
-open Microsoft.AspNetCore.Http
-open Newtonsoft.Json
+open System.Collections.Generic
+open System.Net
+open Microsoft.Azure.Functions.Worker
+open Microsoft.Azure.Functions.Worker.Http
 open Microsoft.Extensions.Logging
+open Microsoft.Azure.Functions
 
-module Hello =
-    // Define a nullable container to deserialize into.
-    [<AllowNullLiteral>]
-    type NameContainer() =
-        member val Name = "" with get, set
+[<Function("Hello")>]
+let Run([<HttpTrigger(AuthorizationLevel.Function, "get", "post")>] req : HttpRequestData,
+         executionContext : FunctionContext) =
+     let logger = executionContext.GetLogger("Hello")
+     logger.LogInformation("F# HTTP trigger function processed a request.")
 
-    // For convenience, it's better to have a central place for the literal.
-    [<Literal>]
-    let Name = "name"
+     let response = req.CreateResponse(HttpStatusCode.OK)
+     response.Headers.Add("Content-Type", "text/plain; charset=utf-8")
 
-    [<FunctionName("Hello")>]
-    let run ([<HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)>]req: HttpRequest) (log: ILogger) =
-        async {
-            log.LogInformation("F# HTTP trigger function processed a request.")
+     response.WriteString("Welcome to Azure Functions!")
 
-            let nameOpt =
-                if req.Query.ContainsKey(Name) then
-                    Some(req.Query.[Name].[0])
-                else
-                    None
-
-            use stream = new StreamReader(req.Body)
-            let! reqBody = stream.ReadToEndAsync() |> Async.AwaitTask
-
-            let data = JsonConvert.DeserializeObject<NameContainer>(reqBody)
-
-            let name =
-                match nameOpt with
-                | Some n -> n
-                | None ->
-                   match data with
-                   | null -> ""
-                   | nc -> nc.Name
-
-            if not (String.IsNullOrWhiteSpace(name)) then
-                return OkObjectResult(sprintf "Hello, %s" name) :> IActionResult
-            else
-                return BadRequestObjectResult("Please pass a name on the query string or in the request body") :> IActionResult
-        } |> Async.StartAsTask
+     response
